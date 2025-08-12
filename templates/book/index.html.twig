@@ -1,41 +1,42 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Book index{% endblock %}
+{% block title %}Books{% endblock %}
 
 {% block body %}
-    <h1>Book index</h1>
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h1 class="h3 m-0">Books</h1>
+  <a class="btn btn-primary" href="{{ path('app_book_new') }}">+ New Book</a>
+</div>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Isbn</th>
-                <th>PublishedAt</th>
-                <th>Pages</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for book in books %}
-            <tr>
-                <td>{{ book.id }}</td>
-                <td>{{ book.title }}</td>
-                <td>{{ book.isbn }}</td>
-                <td>{{ book.publishedAt ? book.publishedAt|date('Y-m-d') : '' }}</td>
-                <td>{{ book.pages }}</td>
-                <td>
-                    <a href="{{ path('app_book_show', {'id': book.id}) }}">show</a>
-                    <a href="{{ path('app_book_edit', {'id': book.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_book_new') }}">Create new</a>
+<table class="table table-striped table-hover align-middle">
+  <thead class="table-dark">
+    <tr>
+      <th>ID</th>
+      <th>Title</th>
+      <th>ISBN</th>
+      <th>Category</th>
+      <th>Authors</th>
+      <th class="text-end">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for book in books %}
+    <tr>
+      <td>{{ book.id }}</td>
+      <td>{{ book.title }}</td>
+      <td><code>{{ book.isbn }}</code></td>
+      <td>{{ book.category }}</td>
+      <td>
+        {% for a in book.authors %}{{ loop.first ? '' : ', ' }}{{ a }}{% endfor %}
+      </td>
+      <td class="text-end">
+        <a class="btn btn-sm btn-outline-secondary" href="{{ path('app_book_show', {'id': book.id}) }}">Show</a>
+        <a class="btn btn-sm btn-outline-primary" href="{{ path('app_book_edit', {'id': book.id}) }}">Edit</a>
+      </td>
+    </tr>
+  {% else %}
+    <tr><td colspan="6" class="text-center text-muted">No records</td></tr>
+  {% endfor %}
+  </tbody>
+</table>
 {% endblock %}

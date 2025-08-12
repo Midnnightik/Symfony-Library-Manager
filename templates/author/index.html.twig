@@ -1,41 +1,40 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Author index{% endblock %}
+{% block title %}Authors{% endblock %}
 
 {% block body %}
-    <h1>Author index</h1>
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h1 class="h3 m-0">Authors</h1>
+  <a class="btn btn-primary" href="{{ path('app_author_new') }}">+ New Author</a>
+</div>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>FirstName</th>
-                <th>LastName</th>
-                <th>Bio</th>
-                <th>CreatedAt</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for author in authors %}
-            <tr>
-                <td>{{ author.id }}</td>
-                <td>{{ author.firstName }}</td>
-                <td>{{ author.lastName }}</td>
-                <td>{{ author.bio }}</td>
-                <td>{{ author.createdAt ? author.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('app_author_show', {'id': author.id}) }}">show</a>
-                    <a href="{{ path('app_author_edit', {'id': author.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_author_new') }}">Create new</a>
+<table class="table table-striped table-hover align-middle">
+  <thead class="table-dark">
+    <tr>
+      <th>ID</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Bio</th>
+      <th>Created At</th>
+      <th class="text-end">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for author in authors %}
+    <tr>
+      <td>{{ author.id }}</td>
+      <td>{{ author.firstName }}</td>
+      <td>{{ author.lastName }}</td>
+      <td>{{ author.bio }}</td>
+      <td>{{ author.createdAt ? author.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+      <td class="text-end">
+        <a class="btn btn-sm btn-outline-secondary" href="{{ path('app_author_show', {'id': author.id}) }}">Show</a>
+        <a class="btn btn-sm btn-outline-primary" href="{{ path('app_author_edit', {'id': author.id}) }}">Edit</a>
+      </td>
+    </tr>
+  {% else %}
+    <tr><td colspan="6" class="text-center text-muted">No records</td></tr>
+  {% endfor %}
+  </tbody>
+</table>
 {% endblock %}

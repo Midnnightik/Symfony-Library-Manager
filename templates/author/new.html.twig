@@ -1,11 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Author{% endblock %}
+{% block title %}Create Author{% endblock %}
 
 {% block body %}
-    <h1>Create new Author</h1>
 
-    {{ include('author/_form.html.twig') }}
+<h1 class="h3 mb-3">Create Author</h1>
 
-    <a href="{{ path('app_author_index') }}">back to list</a>
+{{ include('author/_form.html.twig', {'button_label': 'Save'}) }}
+
+<a class="btn btn-link mt-2" href="{{ path('app_author_index') }}">← Back</a>
+
 {% endblock %}
