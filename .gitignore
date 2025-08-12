@@ -1,0 +1,23 @@
+# Symfony / PHP
+/vendor/
+/var/
+/node_modules/
+/public/build/
+/.idea/
+/.vscode/
+/phpunit.xml
+phpunit.xml.dist
+
+# env
+.env.local
+.env.*.local
+.env.test
+.env.test.local
+
+# cache & logs
+*.cache
+*.log
+
+# Docker
+docker-compose.override.yml
+
