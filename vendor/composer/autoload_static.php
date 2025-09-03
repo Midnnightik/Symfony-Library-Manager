@@ -82,6 +82,9 @@ class ComposerStaticInitaf3a971b86a4585c7c3bf9fe517e48ae
             'Psr\\Container\\' => 14,
             'Psr\\Cache\\' => 10,
             'PhpParser\\' => 10,
+            'Pagerfanta\\Twig\\' => 16,
+            'Pagerfanta\\Doctrine\\ORM\\' => 24,
+            'Pagerfanta\\' => 11,
         ),
         'F' => 
         array (
@@ -104,6 +107,10 @@ class ComposerStaticInitaf3a971b86a4585c7c3bf9fe517e48ae
             'Doctrine\\Bundle\\MigrationsBundle\\' => 33,
             'Doctrine\\Bundle\\FixturesBundle\\' => 31,
             'Doctrine\\Bundle\\DoctrineBundle\\' => 31,
+        ),
+        'B' => 
+        array (
+            'BabDev\\PagerfantaBundle\\' => 24,
         ),
         'A' => 
         array (
@@ -317,6 +324,18 @@ class ComposerStaticInitaf3a971b86a4585c7c3bf9fe517e48ae
         array (
             0 => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser',
         ),
+        'Pagerfanta\\Twig\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/pagerfanta/twig',
+        ),
+        'Pagerfanta\\Doctrine\\ORM\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/pagerfanta/doctrine-orm-adapter',
+        ),
+        'Pagerfanta\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/pagerfanta/core',
+        ),
         'Faker\\' => 
         array (
             0 => __DIR__ . '/..' . '/fakerphp/faker/src/Faker',
@@ -380,6 +399,10 @@ class ComposerStaticInitaf3a971b86a4585c7c3bf9fe517e48ae
         'Doctrine\\Bundle\\DoctrineBundle\\' => 
         array (
             0 => __DIR__ . '/..' . '/doctrine/doctrine-bundle/src',
+        ),
+        'BabDev\\PagerfantaBundle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/babdev/pagerfanta-bundle/src',
         ),
         'App\\Tests\\' => 
         array (

@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Book;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\ORM\QueryBuilder;
 
 /**
  * @extends ServiceEntityRepository<Book>
@@ -16,28 +17,21 @@ class BookRepository extends ServiceEntityRepository
         parent::__construct($registry, Book::class);
     }
 
-    //    /**
-    //     * @return Book[] Returns an array of Book objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('b')
-    //            ->andWhere('b.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('b.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
+    public function createListQueryBuilder(): QueryBuilder
+    {
+        return $this->createQueryBuilder('b')
+            ->leftJoin('b.category', 'c')->addSelect('c')
+            ->leftJoin('b.authors', 'a')->addSelect('a')
+            ->orderBy('b.id', 'DESC');
+    }
 
-    //    public function findOneBySomeField($value): ?Book
-    //    {
-    //        return $this->createQueryBuilder('b')
-    //            ->andWhere('b.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
+    public function applySearch(QueryBuilder $qb, ?string $q): void
+    {
+        if (!$q) {
+            return;
+        }
+        $qb
+            ->andWhere('b.title LIKE :q OR b.isbn LIKE :q')
+            ->setParameter('q', '%'.trim($q).'%');
+    }
 }

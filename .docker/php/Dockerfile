@@ -6,7 +6,5 @@ RUN apt-get update && apt-get install -y \
  && docker-php-ext-install -j$(nproc) xml dom simplexml \
  && rm -rf /var/lib/apt/lists/*
 
-# Composer усередину контейнера
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
-
 WORKDIR /var/www/html
